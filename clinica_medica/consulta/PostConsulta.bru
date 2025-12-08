@@ -1,0 +1,21 @@
+meta {
+  name: PostConsulta
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{endereco_root}}/consultas
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "medicoId": 4,
+    "pacienteId": 5,
+    "dataHora": "2025-12-20T17:00:00",
+    "motivoConsulta": "Consulta de rotina"
+  }
+  
+}
