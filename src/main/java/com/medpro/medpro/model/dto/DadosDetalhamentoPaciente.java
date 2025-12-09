@@ -8,6 +8,7 @@ public record DadosDetalhamentoPaciente(
         String email,
         String cpf,
         String telefone,
+        Boolean ativo,
         DadosEndereco endereco
 ) {
     public DadosDetalhamentoPaciente(Paciente paciente) {
@@ -17,6 +18,7 @@ public record DadosDetalhamentoPaciente(
                 paciente.getEmail(),
                 paciente.getCpf(),
                 paciente.getTelefone(),
+                paciente.getAtivo(),
                 new DadosEndereco(paciente.getEndereco())
         );
     }

@@ -96,14 +96,12 @@ public class ConsultaController {
         System.out.println(consulta);
         consultaRepo.save(consulta);
 
-        var dto = new DadosDetalhamentoConsulta(consulta);
-
         var uri = uriBuilder
                 .path("/consultas/{id}")
                 .buildAndExpand(consulta.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoConsulta(consulta));
     }
 
     @DeleteMapping("/{id}")
