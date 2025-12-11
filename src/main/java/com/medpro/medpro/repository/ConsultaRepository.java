@@ -3,18 +3,13 @@ package com.medpro.medpro.repository;
 import com.medpro.medpro.model.entity.Consulta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.List;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 
-    // Verificar se médico tem consulta no mesmo horário
-    boolean existsByMedicoIdAndDataHora(Long medicoId, LocalDateTime dataHora);
+    boolean existsByMedicoIdAndDataHoraAndSituacaoNot(Long medicoId, LocalDateTime dataHora, String situacao);
 
-    // Verificar se paciente tem consulta no mesmo horário
-    boolean existsByPacienteIdAndDataHora(Long pacienteId, LocalDateTime dataHora);
+    boolean existsByPacienteIdAndDataHoraAndSituacaoNot(Long pacienteId, LocalDateTime dataHora, String situacao);
 
-    List<Consulta> findAllByMedicoIdAndDataHoraBetween(Long medicoId, LocalDateTime start, LocalDateTime end);
-
-    Optional<Consulta> findByIdAndSituacao(Long id, String situacao);
+    // Método para validar se paciente já tem consulta no dia (independente do horário exato)
+    boolean existsByPacienteIdAndDataHoraBetweenAndSituacaoNot(Long pacienteId, LocalDateTime primeiroHorario, LocalDateTime ultimoHorario, String situacao);
 }
