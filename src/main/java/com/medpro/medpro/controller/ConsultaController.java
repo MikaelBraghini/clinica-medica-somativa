@@ -124,15 +124,13 @@ public class ConsultaController {
         consulta.setPaciente(paciente);
         consulta.setDataHora(dataConsulta);
         consulta.setSituacao("AGENDADA");
-        consulta.setMotivoConsulta(dados.motivoConsulta()); // Se tiver no DTO
+        consulta.setMotivoConsulta(dados.motivoConsulta());
 
         consultaRepo.save(consulta);
 
         var uri = uriBuilder.path("/consultas/{id}").buildAndExpand(consulta.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoConsulta(consulta));
     }
-
-    // --- Demais métodos (Cancelamento, Listagem, Get) ---
 
     @DeleteMapping("/{id}")
     @Transactional
